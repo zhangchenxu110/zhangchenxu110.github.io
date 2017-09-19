@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>张晨旭的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Evernote Export                 body, td {       font-family: 微软雅黑;       font-size: 10pt;     }       在Ubuntu中安装Redis   创建时间：2017/4/24 16:10 更新时间：2017/7/8 14:45 标签：redis, Ubuntu16.04 LTS      在U">
+<meta property="og:type" content="article">
+<meta property="og:title" content="张晨旭的个人博客">
+<meta property="og:url" content="http://yoursite.com/2017/09/19/redis/index.html">
+<meta property="og:site_name" content="张晨旭的个人博客">
+<meta property="og:description" content="Evernote Export                 body, td {       font-family: 微软雅黑;       font-size: 10pt;     }       在Ubuntu中安装Redis   创建时间：2017/4/24 16:10 更新时间：2017/7/8 14:45 标签：redis, Ubuntu16.04 LTS      在U">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/09/19/redis/在Ubuntu中安装Redis_files/Image.png">
+<meta property="og:updated_time" content="2017-08-05T01:29:19.525Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="张晨旭的个人博客">
+<meta name="twitter:description" content="Evernote Export                 body, td {       font-family: 微软雅黑;       font-size: 10pt;     }       在Ubuntu中安装Redis   创建时间：2017/4/24 16:10 更新时间：2017/7/8 14:45 标签：redis, Ubuntu16.04 LTS      在U">
+<meta name="twitter:image" content="http://yoursite.com/2017/09/19/redis/在Ubuntu中安装Redis_files/Image.png">
+  
+    <link rel="alternate" href="/atom.xml" title="张晨旭的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">张晨旭的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-redis" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/19/redis/" class="article-date">
+  <time datetime="2017-09-19T04:33:25.847Z" itemprop="datePublished">2017-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<html>
+<head>
+  <title>Evernote Export</title>
+  <basefont face="微软雅黑" size="2">
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <meta name="exporter-version" content="Evernote Windows/304720 (zh-CN, MWS); Windows/10.0.15063 (Win64);">
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="852">
+<h1>在Ubuntu中安装Redis</h1>
+<div>
+<table bgcolor="#D4DDE5" border="0">
+<tr><td><b>创建时间：</b></td><td><i>2017/4/24 16:10</i></td></tr>
+<tr><td><b>更新时间：</b></td><td><i>2017/7/8 14:45</i></td></tr>
+<tr><td><b>标签：</b></td><td><i>redis, Ubuntu16.04 LTS</i></td></tr>
+</table>
+</div>
+<br>
+
+<div>
+<span><div style="-evernote-webclip: true;"><br clear="none"><div style="font-size: 16px; display: inline-block;"><div style="text-align: left;"><h2 style="padding: 0pt; margin: 0px; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-decoration: none; font-size: 20px; font-weight: bold; transition: color 0.2s linear; color: #434343;">在Ubuntu中安装Redis<br clear="none" style="margin: 0pt; padding: 0pt; outline-style: none; outline-width: medium; text-decoration: none; color: #0e73b8;" title="R利剑NoSQL系列文章"></h2><div style="margin: 20px 0pt 10px; padding: 0pt; font-size: 13px;"><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;"><a href="http://blog.fens.me/wp-content/uploads/2014/03/ubuntu-redis.png" shape="rect" style="margin: 0pt; padding: 0pt; outline-style: none; outline-width: medium; text-decoration: none; color: #0e73b8;" target="_blank" rel="external"><img src="在Ubuntu中安装Redis_files/Image.png" type="image/png" alt="ubuntu-redis" height="400" style="margin: 0pt; padding: 0pt; border: none; max-width: 620px; height: auto;" width="600"></a></span></span><br clear="none"></p><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;"><strong style="margin: 0pt; padding: 0pt;">前言</strong></span></span></p><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">Redis是常用基于内存的Key-Value数据库，比Memcache更先进，支持多种数据结构，高效，快速。用Redis可以很轻松解决高并发的数据访问问题；做为时时监控信号处理也非常不错。</span></span></p><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;"><strong style="margin: 0pt; padding: 0pt;">目录</strong></span></span></p><ol style="margin: 0px; padding: 0px 0px 0px 35px;"><li style="list-style-type: none; margin: 0px; padding: 0px; margin-bottom: 5px; padding-bottom: 3px; list-style: decimal outside none; padding-left: 0px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">Redis在Windows中安装</span></span></li><li style="list-style-type: none; margin: 0px; padding: 0px; margin-bottom: 5px; padding-bottom: 3px; list-style: decimal outside none; padding-left: 0px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">Redis在Linux Ubuntu中安装</span></span></li><li style="list-style-type: none; margin: 0px; padding: 0px; margin-bottom: 5px; padding-bottom: 3px; list-style: decimal outside none; padding-left: 0px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">通过命令行客户端访问Redis</span></span></li><li style="list-style-type: none; margin: 0px; padding: 0px; margin-bottom: 5px; padding-bottom: 3px; list-style: decimal outside none; padding-left: 0px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">修改Redis的配置</span></span></li></ol><h2 style="padding: 0pt; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-decoration: none; margin: 25px 0px 10px; font-size: 20px; font-weight: bold; padding-bottom: 5px; transition: color 0.2s linear; color: #434343;">1. Redis在Windows中安装</h2><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">在Windows系统上安装Redis数据库是件非常简单的事情，下载可执行安装文件(exe)，双击安装即可。下载地址：<a href="https://github.com/rgl/redis/downloads" shape="rect" style="margin: 0pt; padding: 0pt; outline-style: none; outline-width: medium; text-decoration: none; color: #0e73b8;" target="_blank">https://github.com/rgl/<span>redis</span>/downloads</a></span></span><br clear="none"></p><ul style="margin: 0pt; padding: 0pt; list-style-type: none; margin-left: 0px; list-style: none; padding-left: 0px; text-indent: 0px;"><li style="margin: 0pt; padding: 0pt; list-style-type: none; list-style: none outside none; background: url('images/bullets/5.gif') 0px 5px no-repeat; margin-bottom: 5px; padding-bottom: 3px; padding-left: 22px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">Redis服务器运行命令：Redis安装目录/<span>redis</span>-server.exe</span></span></li><li style="margin: 0pt; padding: 0pt; list-style-type: none; list-style: none outside none; background: url('images/bullets/5.gif') 0px 5px no-repeat; margin-bottom: 5px; padding-bottom: 3px; padding-left: 22px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">Redis客户端运行命令：Redis安装目录/<span>redis</span>-cli.exe</span></span></li></ul><h2 style="padding: 0pt; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-decoration: none; margin: 25px 0px 10px; font-size: 20px; font-weight: bold; padding-bottom: 5px; transition: color 0.2s linear; color: #434343;">2. Redis在Linux Ubuntu中安装</h2><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">本文使用的Linux是Ubuntu 12.04.2 LTS 64bit的系统，安装Redis数据库软件包可以通过apt-get实现。</span></span></p><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">在Linux Ubuntu中安装Redis数据库</span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+#安装Redis服务器端
+~ sudo apt-get install <span>redis</span>-server
+</code></span></pre><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">安装完成后，Redis服务器会自动启动，我们检查Redis服务器程序</span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+# 检查Redis服务器系统进程
+~ ps -aux|grep <span>redis</span>
+<span>redis</span>     4162  0.1  0.0  10676  1420 ?        Ss   23:24   0:00 /usr/bin/<span>redis</span>-server /etc/<span>redis</span>/<span>redis</span>.conf
+conan     4172  0.0  0.0  11064   924 pts/0    S+   23:26   0:00 grep --color=auto <span>redis</span>
+
+# 通过启动命令检查Redis服务器状态
+~ netstat -nlt|grep 6379
+tcp        0      0 127.0.0.1:6379          0.0.0.0:*               LISTEN
+
+# 通过启动命令检查Redis服务器状态
+~ <span style="color: #ff4635;">sudo /etc/init.d/<span>redis</span>-server status</span>
+<span>redis</span>-server is running
+</code></span></pre><h2 style="padding: 0pt; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-decoration: none; margin: 25px 0px 10px; font-size: 20px; font-weight: bold; padding-bottom: 5px; transition: color 0.2s linear; color: #434343;">3. 通过命令行客户端访问Redis</h2><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">安装Redis服务器，会自动地一起安装Redis命令行客户端程序。</span></span></p><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">在本机输入redis-cli命令就可以启动，客户端程序访问Redis服务器。</span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+~ <span>re</span><span>dis</span>-cli
+<span>redis</span> 127.0.0.1:6379&gt;
+
+# 命令行的帮助
+<span>redis</span> 127.0.0.1:6379&gt; help
+<span>redis</span>-cli 2.2.12
+Type: &quot;help @<span style="margin: 0pt; padding: 0pt;">&quot; to get a list of commands in <span style="margin: 0pt; padding: 0pt;">
+      &quot;help &quot; for help on 
+      &quot;help <span style="margin: 0pt; padding: 0pt;">&quot; to get a list of possible help topics
+      &quot;quit&quot; to exit
+
+
+# 查看所有的key列表
+<span>redis</span> 127.0.0.1:6379&gt; keys *
+(empty list or set)
+</span></span></span></code></span></pre><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">基本的Redis客户端命令操作</span></span></p><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;"><strong style="margin: 0pt; padding: 0pt;">增加一条字符串记录key1</strong></span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+# 增加一条记录key1
+<span>redis</span> 127.0.0.1:6379&gt; set key1 &quot;hello&quot;
+OK
+
+# 打印记录
+<span>redis</span> 127.0.0.1:6379&gt; get key1
+&quot;hello&quot;
+</code></span></pre><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;"><strong style="margin: 0pt; padding: 0pt;">增加一条数字记录key2</strong></span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+# 增加一条数字记录key2
+set key2 1
+OK
+
+# 让数字自增
+<span>redis</span> 127.0.0.1:6379&gt; INCR key2
+(integer) 2
+<span>redis</span> 127.0.0.1:6379&gt; INCR key2
+(integer) 3
+
+# 打印记录
+<span>redis</span> 127.0.0.1:6379&gt; get key2
+&quot;3&quot;
+</code></span></pre><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;"><strong style="margin: 0pt; padding: 0pt;">增加一条列表记录key3</strong></span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+# 增加一个列表记录key3
+<span>redis</span> 127.0.0.1:6379&gt; LPUSH key3 a
+(integer) 1
+
+# 从左边插入列表
+<span>redis</span> 127.0.0.1:6379&gt; LPUSH key3 b
+(integer) 2
+
+# 从右边插入列表
+<span>redis</span> 127.0.0.1:6379&gt; RPUSH key3 c
+(integer) 3
+
+# 打印列表记录，按从左到右的顺序
+<span>redis</span> 127.0.0.1:6379&gt; LRANGE key3 0 3
+1) &quot;b&quot;
+2) &quot;a&quot;
+3) &quot;c&quot;
+</code></span></pre><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;"><strong style="margin: 0pt; padding: 0pt;">增加一条哈希表记录key4</strong></span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+# 增加一个哈希记表录key4
+<span>redis</span> 127.0.0.1:6379&gt; HSET key4 name &quot;John Smith&quot;
+(integer) 1
+
+# 在哈希表中插入，email的Key和Value的值
+<span>redis</span> 127.0.0.1:6379&gt; HSET key4 email &quot;abc@gmail.com&quot;
+(integer) 1
+
+# 打印哈希表中，name为key的值
+<span>redis</span> 127.0.0.1:6379&gt; HGET key4 name
+&quot;John Smith&quot;
+
+# 打印整个哈希表
+<span>redis</span> 127.0.0.1:6379&gt; HGETALL key4
+1) &quot;name&quot;
+2) &quot;John Smith&quot;
+3) &quot;email&quot;
+4) &quot;abc@gmail.com&quot;
+</code></span></pre><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;"><strong style="margin: 0pt; padding: 0pt;">增加一条哈希表记录key5</strong></span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+# 增加一条哈希表记录key5，一次插入多个Key和value的值
+<span>redis</span> 127.0.0.1:6379&gt; HMSET key5 username antirez password P1pp0 age 3
+OK
+
+# 打印哈希表中，username和age为key的值
+<span>redis</span> 127.0.0.1:6379&gt; HMGET key5 username age
+1) &quot;antirez&quot;
+2) &quot;3&quot;
+
+# 打印完整的哈希表记录
+<span>redis</span> 127.0.0.1:6379&gt; HGETALL key5
+1) &quot;username&quot;
+2) &quot;antirez&quot;
+3) &quot;password&quot;
+4) &quot;P1pp0&quot;
+5) &quot;age&quot;
+6) &quot;3&quot;
+</code></span></pre><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">删除记录</span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+# 查看所有的key列表
+<span>redis</span> 127.0.0.1:6379&gt; keys *
+1) &quot;key2&quot;
+2) &quot;key3&quot;
+3) &quot;key4&quot;
+4) &quot;key5&quot;
+5) &quot;key1&quot;
+
+# 删除key1,key5
+<span>redis</span> 127.0.0.1:6379&gt; del key1
+(integer) 1
+<span>redis</span> 127.0.0.1:6379&gt; del key5
+(integer) 1
+
+# 查看所有的key列表
+<span>redis</span> 127.0.0.1:6379&gt; keys *
+1) &quot;key2&quot;
+2) &quot;key3&quot;
+3) &quot;key4&quot;
+</code></span></pre><h2 style="padding: 0pt; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; text-decoration: none; margin: 25px 0px 10px; font-size: 20px; font-weight: bold; padding-bottom: 5px; transition: color 0.2s linear; color: #434343;">4. 修改Redis的配置</h2><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;"><strong style="margin: 0pt; padding: 0pt;">4.1 使用Redis的访问账号</strong></span></span></p><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">默认情况下，访问Redis服务器是不需要密码的，为了增加安全性我们需要设置Redis服务器的访问密码。设置访问密码为redisredis。</span></span></p><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">用vi打开Redis服务器的配置文件redis.conf</span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+~ sudo vi /etc/<span>redis</span>/<span>redis</span>.conf
+
+#取消注释requirepass
+requirepass redisredis
+</code></span></pre><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;"><strong style="margin: 0pt; padding: 0pt;">4.2 让Redis服务器被远程访问</strong></span></span></p><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">默认情况下，Redis服务器不允许远程访问，只允许本机访问，所以我们需要设置打开远程访问的功能。</span></span></p><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">用vi打开Redis服务器的配置文件<span style="color: #ff7a74;">redis.conf</span></span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+~ sudo vi /etc/<span>redis</span>/<span>redis</span>.conf
+
+#注释bind
+#bind 127.0.0.1
+</code></span></pre><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">修改后，重启Redis服务器。</span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+~ sudo /etc/init.d/<span>redis</span>-server restart
+Stopping <span>redis</span>-server: <span>redis</span>-server.
+Starting <span>redis</span>-server: <span>redis</span>-server.
+</code></span></pre><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">未使用密码登陆Redis服务器</span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+~ <span>redis</span>-cli
+
+<span>redis</span> 127.0.0.1:6379&gt; keys *
+(error) ERR operation not permitted
+</code></span></pre><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">发现可以登陆，但无法执行命令了。</span></span></p><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">登陆Redis服务器，输入密码</span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+~  <span>redis</span>-cli -a redisredis
+
+<span>redis</span> 127.0.0.1:6379&gt; keys *
+1) &quot;key2&quot;
+2) &quot;key3&quot;
+3) &quot;key4&quot;
+</code></span></pre><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">登陆后，一切正常。</span></span></p><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">我们检查Redis的网络监听端口</span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+检查Redis服务器占用端口
+~ netstat -nlt|grep 6379
+tcp        0      0 0.0.0.0:6379            0.0.0.0:*               LISTEN
+</code></span></pre><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">我们看到从之间的网络监听从 127.0.0.1:3306 变成 0 0.0.0.0:3306，表示Redis已经允许远程登陆访问。</span></span></p><p style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">我们在远程的另一台Linux访问Redis服务器</span></span></p><pre style="margin: 0pt; padding: 10px; background: none 0% 0% repeat scroll #f9f9d4; overflow: auto; margin-bottom: 15px;" xml:space="preserve"><span style="color: #4d4d4f;"><code style="font-variant-ligatures: normal; margin: 0pt; background: none 0% 0% repeat scroll #ffffe1; font-family: Monaco, monospace; font-style: normal; padding: 1px 3px; font-variant-caps: normal; font-weight: normal; font-size: 11px; font-stretch: normal;">
+~ <span>redis</span>-cli -a redisredis -h 192.168.1.199
+
+<span>redis</span> 192.168.1.199:6379&gt; keys *
+1) &quot;key2&quot;
+2) &quot;key3&quot;
+3) &quot;key4&quot;
+</code></span></pre><div style="margin: 0pt; padding: 0pt; margin-bottom: 15px; margin-top: 10px;"><div><span style="color: #4d4d4f;"><span style="font-family: Arial, Helvetica, sans-serif;">远程访问正常。通过上面的操作，我们就把Redis数据库服务器，在Linux Ubuntu中的系统安装完成。</span></span></div></div></div><div style="margin: 0pt; padding: 0pt;"><div style="margin: 0pt; padding: 0pt;"><div style="margin: 0pt; padding: 0pt;"><br clear="none"></div></div></div></div></div><br clear="none"></div></span>
+</div></a></body></html>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/19/redis/" data-id="cj7r4rx0g0003o4vnvmuf7169" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/19/Ubuntu 用户/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/19/MongoDB 安装与配置/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/19/Ubuntu 用户/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/19/redis/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/19/MongoDB 安装与配置/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/19/MongoDB Replicat Set 架构搭建/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/19/MongoDB OPS Manager/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 张晨旭<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>

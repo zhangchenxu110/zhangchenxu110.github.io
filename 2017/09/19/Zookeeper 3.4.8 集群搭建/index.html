@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>张晨旭的个人博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Zookeeper 3.4.8 集群搭建                                                  Zookeeper 3.4.8 集群搭建      Zookeeper 3.4.8 集群搭建  1. 了解Zookeeper 下载稳定版Zookeeper   2. Zookeeper 配置 同步所有节点的时间 解压到 /opt 目录 创建 ~/hadoop">
+<meta property="og:type" content="article">
+<meta property="og:title" content="张晨旭的个人博客">
+<meta property="og:url" content="http://yoursite.com/2017/09/19/Zookeeper 3.4.8 集群搭建/index.html">
+<meta property="og:site_name" content="张晨旭的个人博客">
+<meta property="og:description" content="Zookeeper 3.4.8 集群搭建                                                  Zookeeper 3.4.8 集群搭建      Zookeeper 3.4.8 集群搭建  1. 了解Zookeeper 下载稳定版Zookeeper   2. Zookeeper 配置 同步所有节点的时间 解压到 /opt 目录 创建 ~/hadoop">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-05T01:25:08.372Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="张晨旭的个人博客">
+<meta name="twitter:description" content="Zookeeper 3.4.8 集群搭建                                                  Zookeeper 3.4.8 集群搭建      Zookeeper 3.4.8 集群搭建  1. 了解Zookeeper 下载稳定版Zookeeper   2. Zookeeper 配置 同步所有节点的时间 解压到 /opt 目录 创建 ~/hadoop">
+  
+    <link rel="alternate" href="/atom.xml" title="张晨旭的个人博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">张晨旭的个人博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Zookeeper 3.4.8 集群搭建" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/19/Zookeeper 3.4.8 集群搭建/" class="article-date">
+  <time datetime="2017-09-19T04:33:25.826Z" itemprop="datePublished">2017-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+<!DOCTYPE html><html><head><title>Zookeeper 3.4.8 集群搭建</title><meta charset="utf-8"><link href="https://dn-maxiang.qbox.me/res-min/themes/marxico.css" rel="stylesheet"><style></style></head><body><div id="preview-contents" class="note-content">
+                        
+                    
+
+
+
+<h1 id="zookeeper-348-集群搭建">Zookeeper 3.4.8 集群搭建</h1>
+
+<p></p>
+
+<div><div class="toc"><div class="toc">
+<ul>
+<li><a href="#zookeeper-348-集群搭建">Zookeeper 3.4.8 集群搭建</a><ul>
+<li><ul>
+<li><a href="#1-了解zookeeper">1. 了解Zookeeper</a><ul>
+<li><a href="#下载稳定版zookeeper">下载稳定版Zookeeper</a></li>
+</ul>
+</li>
+<li><a href="#2-zookeeper-配置">2. Zookeeper 配置</a><ul>
+<li><a href="#同步所有节点的时间">同步所有节点的时间</a></li>
+<li><a href="#解压到-opt-目录">解压到 /opt 目录</a></li>
+<li><a href="#创建-hadoopzookeeper-目录">创建 ~/hadoop/zookeeper 目录</a></li>
+<li><a href="#创建-hadoopzookeeperlog-目录">创建 ~/hadoop/zookeeper/log 目录</a></li>
+<li><a href="#配置-zoocfg">配置 zoo.cfg</a></li>
+<li><a href="#将安装文件分发到所有的节点中">将安装文件分发到所有的节点中</a></li>
+<li><a href="#设置myid必须为整数">设置myid（必须为整数）</a></li>
+<li><a href="#配置zookeeper环境变量">配置Zookeeper环境变量</a></li>
+<li><a href="#启动-zookeeper-要所有节点都同时启动">启动 Zookeeper （要所有节点都同时启动）</a></li>
+</ul>
+</li>
+<li><a href="#3-bug解决">3. Bug解决</a><ul>
+<li><a href="#a-在zookeeperout中出现找不到配置文件">a. 在zookeeper.out中出现找不到配置文件</a></li>
+<li><a href="#b-在zookeeperout中出现无法连接">b. 在zookeeper.out中出现无法连接</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+<p><strong>引用请注明来源：nutao</strong> </p>
+
+<hr>
+
+
+
+<h3 id="1-了解zookeeper">1. 了解Zookeeper</h3>
+
+<p>Apache Zookeeper: 是一个为分布式应用所设计的分布的、开源的协调服务，它主要是用来解决分布式应用中经常遇到的一些数据管理问题，简化分布式应用协调及其管理的难度，提供高性能的分布式服务</p>
+
+
+
+<h4 id="下载稳定版zookeeper">下载稳定版Zookeeper</h4>
+
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/apache/" target="_blank">清华开源Apache镜像</a></p>
+
+<blockquote>
+  <p>我们这里使用的版本是<strong>zookeeper-3.4.8.tar.gz</strong></p>
+</blockquote>
+
+
+
+<h3 id="2-zookeeper-配置">2. Zookeeper 配置</h3>
+
+
+
+<h4 id="同步所有节点的时间">同步所有节点的时间</h4>
+
+<p>参照：<a href="https://www.evernote.com/shard/s665/nl/163404787/5e736c4c-7684-46fe-87b4-892e63485791" target="_blank">笔记：Hadoop集群配置——2.前期准备，修改服务器主机名和hosts文件</a></p>
+
+
+
+<h4 id="解压到-opt-目录">解压到 /opt 目录</h4>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs">sudo tar -zxvf zookeeper-3.4.8.tar.gz -C /opt<br></code></pre>
+
+
+
+<h4 id="创建-hadoopzookeeper-目录">创建 ~/hadoop/zookeeper 目录</h4>
+
+<blockquote>
+  <p>用于存放zookeeper的快照数据文件</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs stylus">mkdir -<span class="hljs-selector-tag">p</span> ~/hadoop/zookeeper<br></code></pre>
+
+
+
+<h4 id="创建-hadoopzookeeperlog-目录">创建 ~/hadoop/zookeeper/log 目录</h4>
+
+<blockquote>
+  <p>用于存放zookeeper的日志文件 zookeeper.out</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs maxima"><span class="hljs-built_in">mkdir</span> -p ~/hadoop/zookeeper/<span class="hljs-built_in">log</span><br></code></pre>
+
+
+
+<h4 id="配置-zoocfg">配置 zoo.cfg</h4>
+
+<blockquote>
+  <p>位于 <strong><code>zookeeper-3.4.8/conf</code></strong> <br>
+  提供的是 zoo_sample.cfg, 要将其复制一份出来</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs nix"><span class="hljs-attr">tickTime=2000</span><br><span class="hljs-comment"># 数据路径</span><br><span class="hljs-attr">dataDir=/home/cisdi/hadoop/zookeeper</span><br><span class="hljs-attr">clientPort=2181</span><br><span class="hljs-attr">initLimit=5</span><br><span class="hljs-attr">syncLimit=2</span><br><br>autopurge.<span class="hljs-attr">snapRetainCount=3</span><br>autopurge.<span class="hljs-attr">purgeInterval=1</span><br><br><span class="hljs-comment"># 3台节点</span><br>server.<span class="hljs-number">1</span>=master:<span class="hljs-number">2888</span>:<span class="hljs-number">3888</span><br>server.<span class="hljs-number">2</span>=node1:<span class="hljs-number">2888</span>:<span class="hljs-number">3888</span><br>server.<span class="hljs-number">3</span>=node2:<span class="hljs-number">2888</span>:<span class="hljs-number">3888</span><br></code></pre>
+
+<p><strong><code>赋予/conf 文件夹下的所有配置文件可执行权限</code></strong> <br>
+如果出现问题，请转到目录 <a href="http://undefined" target="_blank">3.Bug解决</a></p>
+
+
+
+<h4 id="将安装文件分发到所有的节点中">将安装文件分发到所有的节点中</h4>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs elixir">scp -r /opt/zookeeper-<span class="hljs-number">3.4</span>.<span class="hljs-number">8</span> cisdi<span class="hljs-variable">@node1</span><span class="hljs-symbol">:/opt</span><br>scp -r /opt/zookeeper-<span class="hljs-number">3.4</span>.<span class="hljs-number">8</span> cisdi<span class="hljs-variable">@node2</span><span class="hljs-symbol">:/opt</span><br></code></pre>
+
+<p><strong>如果出现权限问题，可以先保存到/home/cisdi，然后再在本地复制到/opt中</strong></p>
+
+
+
+<h4 id="设置myid必须为整数">设置myid（<code>必须为整数</code>）</h4>
+
+<p>在<code>dataDir=/home/cisdi/hadoop/zookeeper</code> 目录中创建myid文件</p>
+
+<table>
+<thead>
+<tr>
+  <th align="left">节点</th>
+  <th align="right">myid 值</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td align="left">master</td>
+  <td align="right">1</td>
+</tr>
+<tr>
+  <td align="left">node1</td>
+  <td align="right">2</td>
+</tr>
+<tr>
+  <td align="left">node2</td>
+  <td align="right">3</td>
+</tr>
+</tbody></table>
+
+
+
+
+<h4 id="配置zookeeper环境变量">配置Zookeeper环境变量</h4>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs">sudo vi /etc/profile.d/zookeeper-3.4.8.sh<br></code></pre>
+
+<blockquote>
+  <p>插入如下命令</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs"><span class="hljs-meta">#!/bin/sh</span><br><span class="hljs-comment"># Path：/etc/profile.d/zookeeper-3.4.8.sh</span><br><span class="hljs-built_in">export</span> ZK_HOME=<span class="hljs-string">"/opt/zookeeper-3.4.8"</span><br><span class="hljs-built_in">export</span> PATH=<span class="hljs-string">"<span class="hljs-variable">$ZK_HOME</span>/bin:<span class="hljs-variable">$PATH</span>"</span><br></code></pre>
+
+<p>然后赋予此文件可执行权限</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs lsl">chmod +x /etc/profile.d/zookeeper<span class="hljs-number">-3.4</span><span class="hljs-number">.8</span>.sh<br></code></pre>
+
+<blockquote>
+  <p><strong><code>将此sh文件复制到所有节点中</code></strong></p>
+</blockquote>
+
+<p>如果出现权限问题，可以先复制到home，再在本地复制到/etc/profile.d/</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-bash hljs">scp /home/cisdi/hadoop/conf4sh/zookeeper-3.4.8.sh cisdi@node1:/home/cisdi/hadoop/conf4sh/<br></code></pre>
+
+<p><strong>记得要在所有节点赋予此文件可执行权限</strong></p>
+
+
+
+<h4 id="启动-zookeeper-要所有节点都同时启动">启动 Zookeeper （要所有节点都同时启动）</h4>
+
+<blockquote>
+  <p>切到安装路径</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs lsl">cd /opt/zookeeper<span class="hljs-number">-3.4</span><span class="hljs-number">.8</span><br></code></pre>
+
+<blockquote>
+  <p>启动</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs stylus">./bin/zkServer<span class="hljs-selector-class">.sh</span> start<br></code></pre>
+
+<p>日志如下:</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="language-java hljs">ZooKeeper JMX enabled by <span class="hljs-keyword">default</span><br>Using config: /opt/zookeeper-<span class="hljs-number">3.4</span>.8/bin/../conf/zoo.cfg<br>Starting zookeeper ... STARTED<br></code></pre>
+
+<blockquote>
+  <p>查看状态( 显示 Mode 即为成功启动)</p>
+</blockquote>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs stylus">./bin/zkServer<span class="hljs-selector-class">.sh</span> status<br></code></pre>
+
+<p>日志:</p>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs groovy">ZooKeeper JMX enabled by <span class="hljs-keyword">default</span><br>Using <span class="hljs-string">config:</span> <span class="hljs-regexp">/opt/</span>zookeeper<span class="hljs-number">-3.4</span><span class="hljs-number">.8</span><span class="hljs-regexp">/bin/</span>..<span class="hljs-regexp">/conf/</span>zoo.cfg<br><span class="hljs-string">Mode:</span> leader<br></code></pre>
+
+
+
+<h3 id="3-bug解决">3. Bug解决</h3>
+
+
+
+<h4 id="a-在zookeeperout中出现找不到配置文件">a. 在zookeeper.out中出现找不到配置文件</h4>
+
+<blockquote>
+  <p>给 /conf 下的文件添加执行权限</p>
+</blockquote>
+
+
+
+<h4 id="b-在zookeeperout中出现无法连接">b. 在zookeeper.out中出现无法连接</h4>
+
+<blockquote>
+  <p>将 /conf/zoo.cfg 修改为(所有节点都要修改):</p>
+</blockquote>
+
+<ul><li>master</li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs x86asm">server<span class="hljs-meta">.1</span>=<span class="hljs-number">0.0</span><span class="hljs-meta">.0</span><span class="hljs-meta">.0</span>:<span class="hljs-number">2888</span>:<span class="hljs-number">3888</span><br>server<span class="hljs-meta">.2</span>=node1:<span class="hljs-number">2888</span>:<span class="hljs-number">3888</span><br>server<span class="hljs-meta">.3</span>=node2:<span class="hljs-number">2888</span>:<span class="hljs-number">3888</span><br></code></pre>
+
+<ul><li>node1</li>
+</ul>
+
+
+
+<pre class="prettyprint hljs-dark"><code class="hljs x86asm">server<span class="hljs-meta">.1</span>=master:<span class="hljs-number">2888</span>:<span class="hljs-number">3888</span><br>server<span class="hljs-meta">.2</span>=<span class="hljs-number">0.0</span><span class="hljs-meta">.0</span><span class="hljs-meta">.0</span>:<span class="hljs-number">2888</span>:<span class="hljs-number">3888</span><br>server<span class="hljs-meta">.3</span>=node2:<span class="hljs-number">2888</span>:<span class="hljs-number">3888</span><br></code></pre>
+
+<p><strong>所有节点本机的ip全部改为 0.0.0.0</strong></p></div></body></html>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2017/09/19/Zookeeper 3.4.8 集群搭建/" data-id="cj7r4rx0e0002o4vnwfte8z6s" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/09/19/Hadoop 2.7.1 集群搭建/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/09/19/YCSB/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/19/Ubuntu 用户/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/19/redis/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/19/MongoDB 安装与配置/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/19/MongoDB Replicat Set 架构搭建/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/19/MongoDB OPS Manager/">(no title)</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 张晨旭<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
